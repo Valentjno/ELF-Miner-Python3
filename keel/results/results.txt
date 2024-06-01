@@ -1,0 +1,8 @@
+UCS - 100.0
+XCS - 99.2324561404
+GAssist-Adi - 100%
+JRip - 99.7077
+PART - 99.7077
+J48 - 99.6712
+Random Forest - 99.5981
+

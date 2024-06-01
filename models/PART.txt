@@ -1,0 +1,72 @@
+=== Run information ===
+
+Scheme:weka.classifiers.rules.PART -M 2 -C 0.25 -Q 1
+Relation:     final_final_1
+Instances:    9122
+Attributes:   147
+[list of attributes omitted]
+Test mode:split 70.0% train, remainder test
+
+=== Classifier model (full training set) ===
+
+PART decision list
+------------------
+
+DYNRELAENT <= 0 AND
+ProgramHeaderOffset <= 52: M (6819.0/1.0)
+
+DYNINIT_ARRAY > 0 AND
+s_STT_FUNC_STB_GLOBAL <= 22 AND
+STT_OBJECT_STB_WEAK <= 6 AND
+.bss_size > 6 AND
+.rodata_alignment > 4: B (1402.0)
+
+DYNINIT_ARRAY > 0 AND
+.plt_size <= 648 AND
+StringTableIndex > 27: B (679.0)
+
+STT_NOTYPE <= 6 AND
+DYNINIT_ARRAY <= 0 AND
+StringTableIndex <= 28: M (101.0)
+
+s_STT_OBJECT_STB_GLOBAL <= 7 AND
+STT_NOTYPE_STB_WEAK > 2: B (90.0/1.0)
+
+.data_alignment <= 32 AND
+.bss_size > 31040: M (15.0)
+
+EntriesSection <= 30: M (8.0/1.0)
+
+: B (8.0)
+
+Number of Rules  : 	8
+
+
+Time taken to build model: 0.94 seconds
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances        2729               99.7077 %
+Incorrectly Classified Instances         8                0.2923 %
+Kappa statistic                          0.9921
+Mean absolute error                      0.0029
+Root mean squared error                  0.0509
+Relative absolute error                  0.798  %
+Root relative squared error             11.804  %
+Total Number of Instances             2737     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.997     0.003      0.999     0.997     0.998      0.998    M
+                 0.997     0.003      0.991     0.997     0.994      0.998    B
+Weighted Avg.    0.997     0.003      0.997     0.997     0.997      0.998
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 2057    6 |    a = M
+    2  672 |    b = B
+
+
