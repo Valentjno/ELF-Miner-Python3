@@ -1,0 +1,29 @@
+
+# Use Miniconda as the base image
+FROM continuumio/miniconda3:latest
+
+RUN add-apt-repository ppa:openjdk-r/ppa && apt-get update && apt-get install -y \
+    openjdk-11-jdk \
+    gcc \
+    g++ \
+    curl \
+    build-essential \
+    libxext6 libxrender1 libxtst6 \
+    libx11-dev \
+    make \
+    binutils
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the rest of the application code into the container
+COPY . .
+
+# Create the Conda environment using the environment.yml file
+RUN conda env create -f environment.yml
+
+# Activate the environment by default when the container starts
+#RUN echo "conda activate header_md_3.11"
+
+# Set the default command to bash with conda environment activated
+ENTRYPOINT ["/bin/bash", "-l"]

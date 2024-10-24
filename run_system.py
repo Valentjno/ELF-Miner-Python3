@@ -19,5 +19,6 @@ timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 new_file_name = f"dataset_{timestamp}.csv"
 
 # Move the file with the new name
-subprocess.call(f"mv results.csv results_feature_engineering/{new_file_name}", shell=True)
+subprocess.call(f"cp results.csv results_feature_engineering/{new_file_name}", shell=True)
+subprocess.call(f"mv results.csv system/final.csv", shell=True)
 subprocess.call("cd system && make", shell=True)

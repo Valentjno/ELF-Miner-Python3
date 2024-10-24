@@ -1,0 +1,41 @@
+# Use an official Python 3.11 base image (slim version)
+FROM python:3.11-slim-buster
+
+# Install dependencies for Java (openjdk-11) and other system packages
+RUN apt-get update && apt-get install -y \
+    openjdk-11-jdk \
+    gcc \
+    g++ \
+    curl \
+    build-essential \
+    libxext6 libxrender1 libxtst6 \
+    libx11-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set environment variables for Java
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV PATH="$JAVA_HOME/bin:$PATH"
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the requirements.txt into the container
+COPY requirements.txt .
+
+# Create the virtual environment as root
+RUN python -m venv /app/venv
+
+# Install the Python dependencies within the virtual environment
+RUN /app/venv/bin/pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the project files into the container
+COPY . .
+
+# Ensure the virtual environment is activated by default for root
+RUN echo "source /app/venv/bin/activate" >> /root/.bashrc
+
+# Expose a port if needed (optional)
+EXPOSE 8080
+
+# Set the entrypoint to bash to allow interactive usage with root
+ENTRYPOINT ["/bin/bash", "-l"]
